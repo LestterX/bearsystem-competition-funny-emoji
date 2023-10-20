@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Observo</title>
+</head>
+<body>
+
+    <div class="emoji">
+        <div class="head">
+            <div class="eye left-eye">
+                <div class="eye-ball"></div>
+            </div>
+            <div class="eye right-eye">
+                <div class="eye-ball"></div>
+            </div>
+            <div class="mouth">
+                <div class="tongue"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .emoji {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .head {
+            box-shadow: -20px 20px 25px 10px #000;
+            background: linear-gradient(#d0d343, #b68c01);
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            position: relative;
+        }
+        .eye {
+            position: absolute;
+            background-color: #fff;
+            width: 100px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .left-eye {
+            top: 130px;
+            left: 70px;
+        }
+        .right-eye {
+            top: 130px;
+            right: 70px;
+        }
+        .eye-ball {
+            display: none;
+            background-color: #000;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+        }
+        .mouth {
+            background-color: #000;
+            width: 250px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            top: 300px;
+            left: 125px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        .tongue {
+            display: none;
+            margin-bottom: -10px;
+            background-color: red;
+            width: 125px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>
+
+    <script>
+        const eyes = document.querySelectorAll('.eye')
+        const eyeBalls = document.querySelectorAll('.eye-ball')
+        const mouth = document.querySelector('.mouth')
+        const tongue = document.querySelector('.tongue')
+
+        document.addEventListener('click', (e) => {
+            mouth.style.height = '110px'
+            tongue.style.display = 'block'
+
+            eyeBalls.forEach(eyeBall => {
+                eyeBall.style.display = 'block'
+            })
+            eyes.forEach(eye => {
+                eye.style.height = '100px'
+            })
+        })
+
+        // const emoji = document.querySelector('.emoji')
+        // const leftEye = document.querySelector('.left-eye')
+        // const rightEye = document.querySelector('.right-eye')
+        // emoji.addEventListener("mousemove", (event) => {
+        //     const mouseX = event.clientX - emoji.getBoundingClientRect().left;
+        //     const mouseY = event.clientY - emoji.getBoundingClientRect().top;
+
+        //     const eyeX = mouseX / emoji.offsetWidth;
+        //     const eyeY = mouseY / emoji.offsetHeight;
+
+        //     leftEye.style.transform = translate(-50%, -50%) translate(${eyeX * 40}px, ${eyeY * 20}px);
+        //     rightEye.style.transform = translate(-50%, -50%) translate(${eyeX * 40}px, ${eyeY * 20}px);
+        // });
+    </script>
+    
+</body>
+</html>
