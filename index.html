@@ -46,7 +46,7 @@
             position: absolute;
             background-color: #fff;
             width: 100px;
-            height: 10px;
+            height: 75px;
             border-radius: 50%;
         }
         .left-eye {
@@ -58,16 +58,20 @@
             right: 70px;
         }
         .eye-ball {
-            display: none;
+            display: flex;
             background-color: #000;
-            width: 64px;
-            height: 64px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .mouth {
             background-color: #000;
             width: 250px;
-            height: 20px;
+            height: 125px;
             border-radius: 50%;
             position: absolute;
             top: 300px;
@@ -77,7 +81,7 @@
             align-items: end;
         }
         .tongue {
-            display: none;
+            display: flex;
             margin-bottom: -10px;
             background-color: red;
             width: 125px;
@@ -87,36 +91,27 @@
     </style>
 
     <script>
-        const eyes = document.querySelectorAll('.eye')
-        const eyeBalls = document.querySelectorAll('.eye-ball')
-        const mouth = document.querySelector('.mouth')
-        const tongue = document.querySelector('.tongue')
+        const emoji = document.querySelector('.emoji');
+        const eyeBalls = document.querySelectorAll('.eye-ball');
+        
+        // evento do mouse passando por cima do emoji
+        emoji.addEventListener("mousemove", (event) => {
+            const mouseX = event.clientX - emoji.getBoundingClientRect().left;
+            const mouseY = event.clientY - emoji.getBoundingClientRect().top;
 
-        document.addEventListener('click', (e) => {
-            mouth.style.height = '110px'
-            tongue.style.display = 'block'
+            const eyeX = mouseX / emoji.offsetWidth - 0.5;
+            const eyeY = mouseY / emoji.offsetHeight - 0.5;
 
-            eyeBalls.forEach(eyeBall => {
-                eyeBall.style.display = 'block'
-            })
-            eyes.forEach(eye => {
-                eye.style.height = '100px'
-            })
-        })
-
-        // const emoji = document.querySelector('.emoji')
-        // const leftEye = document.querySelector('.left-eye')
-        // const rightEye = document.querySelector('.right-eye')
-        // emoji.addEventListener("mousemove", (event) => {
-        //     const mouseX = event.clientX - emoji.getBoundingClientRect().left;
-        //     const mouseY = event.clientY - emoji.getBoundingClientRect().top;
-
-        //     const eyeX = mouseX / emoji.offsetWidth;
-        //     const eyeY = mouseY / emoji.offsetHeight;
-
-        //     leftEye.style.transform = translate(-50%, -50%) translate(${eyeX * 40}px, ${eyeY * 20}px);
-        //     rightEye.style.transform = translate(-50%, -50%) translate(${eyeX * 40}px, ${eyeY * 20}px);
-        // });
+            eyeBalls.forEach((eyeBall) => {
+                eyeBall.style.transform = `translate(-50%, -50%) translate(${eyeX * 50}px, ${eyeY * 40}px)`;
+            });
+        });
+        // evento do clique na tela que faz com que o código retorne para o modo inicial....
+        emoji.addEventListener("click",() => {
+            eyeBalls.forEach((eyeBall) => {
+                eyeBall.style.transform = `translate(-50%, -50%)`;
+            });
+        });
     </script>
     
 </body>
